@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-slot:heading>
-        Shortener Page
+        MiniURL
     </x-slot:heading>
 
     <form action="/shortenUrl" method="POST" class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-sm border border-gray-200">

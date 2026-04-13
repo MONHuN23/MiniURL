@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('shortener');
 });
 
+Route::post('/shortenUrl', [LinkController::class, 'createLink']);
+
 Route::get('/{short_url}', function($short_url) {
     $link = Link::where('short_url', $short_url) -> first();
 
@@ -18,4 +20,3 @@ Route::get('/{short_url}', function($short_url) {
     return redirect()->away($link->original_url);
 });
 
-Route::post('/shortenUrl', [LinkController::class, 'createLink']);
