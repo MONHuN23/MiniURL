@@ -25,6 +25,6 @@ class LinkController extends Controller
             'short_url' => $shortUrl
         ]);
         
-        return "A rövidített url-ed: " . url('/') . "/" . $shortUrl;
+        return response("A rövidített url-ed: " . url('/') . "/" . $shortUrl);
     }
 }
