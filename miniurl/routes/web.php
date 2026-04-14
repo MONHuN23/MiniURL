@@ -15,6 +15,8 @@ Route::get('/{short_url}', function($short_url) {
         abort(404);
     }
 
+    $link->increment('clicks');
+
     return redirect()->away($link->original_url);
 });
 
