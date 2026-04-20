@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\UserController;
 use App\Models\Link;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ Route::get('/register', function() {
 
 
 Route::post('/shortenUrl', [LinkController::class, 'createLink']);
+
+Route::post('/loginUser', [UserController::class, 'createLink']);
+Route::post('/createUser', [UserController::class, 'createUser']);
 
 Route::get('/{short_url}', function($short_url) {
     $link = Link::where('short_url', $short_url) -> first();
