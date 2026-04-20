@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="flex items-center">
-                        <x-nav-button>Login</x-nav-button>
+                        <x-nav-button href="/login">Login</x-nav-button>
                     </div>
                 </div>
             </div>

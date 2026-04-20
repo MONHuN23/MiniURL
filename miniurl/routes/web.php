@@ -8,6 +8,15 @@ Route::get('/', function () {
     return view('shortener');
 });
 
+Route::get('/login', function() {
+    return view('login');
+});
+
+Route::get('/register', function() {
+    return view('register');
+});
+
+
 Route::post('/shortenUrl', [LinkController::class, 'createLink']);
 
 Route::get('/{short_url}', function($short_url) {
