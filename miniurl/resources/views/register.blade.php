@@ -13,13 +13,13 @@
     </div>
 
     <div class="w-full max-w-sm">
-        <form action="/loginUser" method="POST" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+        <form action="/createUser" method="POST" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
             @csrf 
             <h1 class="text-2xl font-bold text-gray-900 mb-6 text-center">Sign In</h1>
 
             <div class="mb-5">
-                <label for="username" class="block mb-2 text-sm font-medium text-gray-700">Username</label>
-                <input type="text" name="username" id="username" 
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="name" id="name" 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none" 
                     placeholder="" required />
             </div>
