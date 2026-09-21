@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\LinkController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\Register;
 use App\Models\Link;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('shortener');
@@ -33,5 +34,13 @@ Route::get('/{short_url}', function($short_url) {
     $link->increment('clicks');
 
     return redirect()->away($link->original_url);
+});
+
+Route::post('/registerUser', Register::class) -> name('registerUser');
+
+Route::post('/logout', function () {
+    Auth::logout();
+
+    return redirect('/');
 });
 
