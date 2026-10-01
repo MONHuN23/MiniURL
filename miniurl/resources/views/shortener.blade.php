@@ -4,7 +4,7 @@
         MiniURL
     </x-slot:heading>
 
-    <form action="/shortenUrl" method="POST" class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+    <form action="{{ route('shortenUrl') }}" method="POST" class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-sm border border-gray-200">
         @csrf <div class="mb-5">
             <label for="url" class="block mb-2 text-sm font-medium text-gray-900">Original URL</label>
             <input type="url" name="url" id="url" 
