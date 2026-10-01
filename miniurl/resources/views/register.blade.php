@@ -9,11 +9,11 @@
 <body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans relative">
 
     <div class="absolute top-5 right-5">
-        <x-nav-button href="/">← Home</x-nav-button>
+        <x-nav-button :href="route('home')">← Home</x-nav-button>
     </div>
 
     <div class="w-full max-w-sm">
-        <form action="/registerUser" method="POST" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+        <form action="{{ route('registerUser') }}" method="POST" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
             @csrf 
             <h1 class="text-2xl font-bold text-gray-900 mb-6 text-center">Sign Up</h1>
 
@@ -47,7 +47,7 @@
 
             <div class="mb-7">
                     Already have an account? 
-                    <a href="/login" class="text-blue-600 font-bold hover:underline">Log In</a>
+                    <a href="{{ route('login') }}" class="text-blue-600 font-bold hover:underline">Log In</a>
                 </p>
             </div>
 
