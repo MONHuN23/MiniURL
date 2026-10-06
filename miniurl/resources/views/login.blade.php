@@ -32,7 +32,7 @@
             </div>
 
             <div class="mb-6">
-                <a href="#" class="text-xs font-medium text-blue-600 hover:underline block mb-1">Forgot your password?</a>
+                <a href="{{ route('password.request') }}" class="text-xs font-medium text-blue-600 hover:underline block mb-1">Forgot your password?</a>
                 <p class="text-xs font-medium text-gray-500">
                     Don't have an account? 
                     <a href="{{ route('register') }}" class="text-blue-600 font-bold hover:underline">Sign up</a>
