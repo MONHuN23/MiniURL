@@ -31,6 +31,15 @@
                             >
                                 Shortener
                             </x-nav-link>
+
+                            @auth
+                                <x-nav-link
+                                    :href="route('links.index')"
+                                    :active="request()->routeIs('links.index')"
+                                >
+                                    My Links
+                                </x-nav-link>
+                            @endauth
                         </div>
                     </div>
 

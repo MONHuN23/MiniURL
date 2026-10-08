@@ -22,6 +22,7 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/shortenUrl', [LinkController::class, 'createLink'])->name('shortenUrl');
+Route::get('/links', [LinkController::class, 'index'])->middleware('auth')->name('links.index');
 
 Route::post('/registerUser', Register::class)->name('registerUser');
 Route::post('/loginUser', Login::class)->name('loginUser');
