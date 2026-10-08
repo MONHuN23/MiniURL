@@ -1,22 +1,27 @@
-<footer class="bg-gray-900 text-white mt-auto border-t border-gray-700">
-    <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+<footer class="bg-slate-900 text-white mt-auto border-t border-slate-800">
+    <div class="mx-auto max-w-7xl px-6 py-10 md:flex md:items-center md:justify-between lg:px-8">
         
-        <div class="flex flex-col gap-2 md:order-1 md:mt-0">
-            <h3 class="text-xl font-bold tracking-tight text-indigo-400">
-                {{ $pagetitle ?? 'MiniURL Projekt' }}
-            </h3>
-            <p class="text-sm text-gray-400 italic">
-                {{ $idezet ?? 'Rövidíts okosan, élj szabadon!' }}
+        <div class="flex flex-col gap-1.5 md:order-1 md:mt-0">
+            <div class="flex items-center gap-2">
+                <span class="text-base font-bold tracking-tight text-white">
+                    Mini<span class="text-indigo-400">URL</span>
+                </span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">v1.0</span>
+            </div>
+            <p class="text-xs text-slate-400 italic">
+                {{ $idezet ?? 'Rövidíts okosan, egyszerűen és villámgyorsan.' }}
             </p>
         </div>
 
-        <div class="mt-8 md:order-2 md:mt-0">
-            <p class="text-center text-xs leading-5 text-gray-400">
-                &copy; {{ date('Y') }} MiniURL Inc. Minden jog fenntartva.
+        <div class="mt-6 md:order-2 md:mt-0 flex flex-col md:items-end gap-1.5">
+            <p class="text-xs text-slate-400">
+                &copy; {{ date('Y') }} MiniURL. Minden jog fenntartva.
             </p>
-            <div class="mt-2 flex justify-center space-x-6 text-xs text-gray-500">
-                <a href="#" class="hover:text-indigo-400">Adatvédelem</a>
-                <a href="#" class="hover:text-indigo-400">Feltételek</a>
+            <div class="flex space-x-4 text-xs text-slate-500">
+                <a href="{{ route('home') }}" class="hover:text-indigo-400 transition">Főoldal</a>
+                @auth
+                    <a href="{{ route('links.index') }}" class="hover:text-indigo-400 transition">Saját linkjeim</a>
+                @endauth
             </div>
         </div>
     </div>

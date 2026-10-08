@@ -23,6 +23,8 @@ Route::get('/register', function () {
 
 Route::post('/shortenUrl', [LinkController::class, 'createLink'])->name('shortenUrl');
 Route::get('/links', [LinkController::class, 'index'])->middleware('auth')->name('links.index');
+Route::patch('/links/{id}', [LinkController::class, 'updateLink'])->middleware('auth')->name('links.update');
+Route::delete('/links/{id}', [LinkController::class, 'deleteLink'])->middleware('auth')->name('links.destroy');
 
 Route::post('/registerUser', Register::class)->name('registerUser');
 Route::post('/loginUser', Login::class)->name('loginUser');

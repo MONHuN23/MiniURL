@@ -1,59 +1,78 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | MiniURL</title>
+    <title>Regisztráció | MiniURL</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans relative">
+<body class="bg-slate-50 flex items-center justify-center min-h-screen font-sans relative p-4">
 
     <div class="absolute top-5 right-5">
-        <x-nav-button :href="route('home')">← Home</x-nav-button>
+        <a href="{{ route('home') }}" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 shadow-sm transition">
+            ← Főoldal
+        </a>
     </div>
 
     <div class="w-full max-w-sm">
-        <form action="{{ route('registerUser') }}" method="POST" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+        <div class="text-center mb-6">
+            <a href="{{ route('home') }}" class="inline-flex items-center gap-2 mb-2">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                </div>
+                <span class="text-2xl font-bold tracking-tight text-slate-900">
+                    Mini<span class="text-indigo-600">URL</span>
+                </span>
+            </a>
+            <h1 class="text-xl font-bold text-slate-800">Fiók létrehozása</h1>
+            <p class="text-xs text-slate-500">Mentsd el és kövesd nyomon az összes linkedet.</p>
+        </div>
+
+        <form action="{{ route('registerUser') }}" method="POST" class="bg-white p-7 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80">
             @csrf 
-            <h1 class="text-2xl font-bold text-gray-900 mb-6 text-center">Sign Up</h1>
 
-            <div class="mb-5">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Username</label>
+            <div class="mb-4">
+                <label for="name" class="block mb-1.5 text-xs font-semibold text-slate-700">Felhasználónév</label>
                 <input type="text" name="name" id="name" 
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none" 
-                    placeholder="" required />
+                    class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 block w-full px-3.5 py-2.5 outline-none transition" 
+                    placeholder="Kovács János" required />
             </div>
 
-            <div class="mb-5">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+            <div class="mb-4">
+                <label for="email" class="block mb-1.5 text-xs font-semibold text-slate-700">Email cím</label>
                 <input type="email" name="email" id="email" 
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none" 
-                    placeholder="name@example.com" required />
+                    class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 block w-full px-3.5 py-2.5 outline-none transition" 
+                    placeholder="pelda@email.hu" required />
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="block mb-1.5 text-xs font-semibold text-slate-700">Jelszó</label>
+                <input type="password" name="password" id="password" 
+                    class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 block w-full px-3.5 py-2.5 outline-none transition" 
+                    placeholder="••••••••" required />
             </div>
 
             <div class="mb-5">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Password</label>
-                <input type="password" name="password" id="password" 
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none" 
-                    placeholder="Password" required />
-            </div>
-
-            <div class="mb-6">
-                <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
+                <label for="password_confirmation" class="block mb-1.5 text-xs font-semibold text-slate-700">Jelszó megerősítése</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" 
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none" 
-                    placeholder="Password" required />
+                    class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 block w-full px-3.5 py-2.5 outline-none transition" 
+                    placeholder="••••••••" required />
             </div>
 
-            <div class="mb-7">
-                    Already have an account? 
-                    <a href="{{ route('login') }}" class="text-blue-600 font-bold hover:underline">Log In</a>
-                </p>
+            <div class="mb-5 text-center text-xs text-slate-500">
+                Már van fiókod? 
+                <a href="{{ route('login') }}" class="font-semibold text-indigo-600 hover:underline">Jelentkezz be</a>
             </div>
 
             <button type="submit" 
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-3 text-center transition duration-200">
-                Register
+                class="w-full py-3 px-4 text-white font-semibold text-sm rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 focus:ring-4 focus:ring-indigo-100 shadow-md shadow-indigo-500/20 transition duration-150 cursor-pointer">
+                Regisztráció
             </button>
         </form>
     </div>
