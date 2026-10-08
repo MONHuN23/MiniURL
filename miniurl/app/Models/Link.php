@@ -9,7 +9,7 @@ class Link extends Model
 {
     protected $table = 'links';
 
-    protected $fillable = ['original_url', 'short_url'];
+    protected $fillable = ['original_url', 'short_url', 'user_id'];
 
     protected $primaryKey = 'id';
 
@@ -24,6 +24,12 @@ class Link extends Model
         return self::create([
             'original_url' => $attributes['url'],
             'short_url' => $shortUrl,
+            'user_id' => $attributes['user_id'] ?? null,
         ]);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
