@@ -34,6 +34,7 @@ class PasswordController extends Controller
         $data = $service->generatePassword($request->validated());
         //Password::create($data);
         $request->user()->passwords()->create($data); //Laravel automatically adds the user_id this way
+
         return back()->with('success', $filledPassword ? 'Password created successfully!' : 'Password created successfully!(Auto generated password)');
     }
 
@@ -51,9 +52,12 @@ class PasswordController extends Controller
     public function update(UpdatetePasswordRequest $request, PasswordService $service, Password $password)
     {
         Gate::authorize('update', $password);
+        
+        $filledPassword = $request->filled('password');
         $data = $service->generatePassword($request->validated());
         $changes = $service->updatePassword($password, $data);
-        return back()->with('changes', $changes)->with('success', 'Password updated successfully!');
+
+        return back()->with('changes', $changes)->with('success', $filledPassword ?  'Password updated successfully!' : 'Password updated successfully (Auto generated password)');
     }
 
     /**

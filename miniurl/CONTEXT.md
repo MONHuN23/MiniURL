@@ -75,6 +75,7 @@ We are expanding this Laravel 13 project from a simple URL shortener into a **Hu
 ### Phase 2: Database Design & Hub Expansion
 - [x] Password Manager CRUD + Encryption + Policy (`Password`, `PasswordPolicy`, `PasswordService`, `PasswordController`, `passwords.blade.php`)
 - [x] Session Flash Messages (`redirect()->with(...)` for link creation, auto-generated password notice, update/delete confirmations)
+  - [x] Small follow-up: Add auto-generated password notice to `PasswordController::update()` as well (when password field is left blank on update)
 - [ ] User Profile Editing + Photo/Avatar Upload (Laravel File Storage + image validation)
 - [ ] Database Design Session (User-Led): Tags (`N:M`) + Sharing (`N:M` with extra pivot columns)
 - [ ] Tags (`N:M`) implementation
