@@ -76,7 +76,11 @@ We are expanding this Laravel 13 project from a simple URL shortener into a **Hu
 - [x] Password Manager CRUD + Encryption + Policy (`Password`, `PasswordPolicy`, `PasswordService`, `PasswordController`, `passwords.blade.php`)
 - [x] Session Flash Messages (`redirect()->with(...)` for link creation, auto-generated password notice, update/delete confirmations)
   - [x] Small follow-up: Add auto-generated password notice to `PasswordController::update()` as well (when password field is left blank on update)
-- [ ] User Profile Editing + Photo/Avatar Upload (Laravel File Storage + image validation)
+- [ ] User Profile Editing + Photo/Avatar Upload (Laravel File Storage + image validation) *(in progress on `feature/user-profile`)*
+  - [x] Migration (`add_avatar_to_users_table`) + `avatar` added to `User` `#[Fillable]`
+  - [x] Finish `UpdateUserRequest` (`ignore($this->user())`, `email` → `required`)
+  - [ ] `UserService` (skip empty password, delete old avatar, store new avatar on `public` disk)
+  - [ ] Controller (`GET /profile`, `PUT /profile`) + `php artisan storage:link` + Blade profile view
 - [ ] Database Design Session (User-Led): Tags (`N:M`) + Sharing (`N:M` with extra pivot columns)
 - [ ] Tags (`N:M`) implementation
 - [ ] Sharing between users (`N:M` with extra pivot columns) + Policy updates
