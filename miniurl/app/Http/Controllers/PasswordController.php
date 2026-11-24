@@ -6,7 +6,7 @@ use App\Http\Requests\CreatePasswordRequest;
 use App\Http\Requests\UpdatetePasswordRequest;
 use App\Models\Password;
 use App\Services\PasswordService;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
@@ -23,7 +23,6 @@ class PasswordController extends Controller
         return view('passwords', [
             'passwords' => $passwords
         ]);
-
     }
 
     /**
@@ -31,10 +30,11 @@ class PasswordController extends Controller
      */
     public function store(PasswordService $service, CreatePasswordRequest $request)
     {
+        $filledPassword = $request->filled('password');
         $data = $service->generatePassword($request->validated());
         //Password::create($data);
         $request->user()->passwords()->create($data); //Laravel automatically adds the user_id this way
-        return redirect('/passwords');
+        return back()->with('success', $filledPassword ? 'Password created successfully!' : 'Password created successfully!(Auto generated password)');
     }
 
     /**
@@ -48,12 +48,12 @@ class PasswordController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatetePasswordRequest $request,PasswordService $service, Password $password)
+    public function update(UpdatetePasswordRequest $request, PasswordService $service, Password $password)
     {
         Gate::authorize('update', $password);
         $data = $service->generatePassword($request->validated());
-        $password->update($data);
-        return redirect('/passwords');
+        $changes = $service->updatePassword($password, $data);
+        return back()->with('changes', $changes)->with('success', 'Password updated successfully!');
     }
 
     /**
@@ -63,6 +63,6 @@ class PasswordController extends Controller
     {
         Gate::authorize('delete', $password);
         $password->delete();
-        return redirect('/passwords');
+        return back()->with('success', 'Password deleted successfully!');
     }
 }

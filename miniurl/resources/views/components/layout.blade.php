@@ -79,6 +79,49 @@
 
     {{-- Main Content --}}
     <main class="flex-1 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+        {{-- Flash Messages --}}
+        @if (session('success'))
+            <div id="flash-banner"
+                class="mb-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/50 backdrop-blur-md px-5 py-4 text-emerald-100 shadow-lg shadow-emerald-950/40">
+                <div class="flex items-start justify-between gap-4">
+                    <div class="space-y-2">
+                        <p class="text-sm font-semibold text-emerald-300 flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                            {{ session('success') }}
+                        </p>
+
+                        @if (session('short_url'))
+                            <div class="flex flex-wrap items-center gap-2 pt-1">
+                                <a href="{{ session('short_url') }}" target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center rounded-lg bg-slate-950/80 border border-emerald-500/30 px-3 py-1.5 text-sm font-mono text-indigo-300 hover:text-indigo-200 underline underline-offset-4 transition">
+                                    {{ session('short_url') }}
+                                </a>
+                                <button type="button"
+                                    onclick="navigator.clipboard.writeText('{{ session('short_url') }}'); this.textContent='Copied!'; setTimeout(() => this.textContent='Copy', 1500)"
+                                    class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 text-xs font-medium text-emerald-200 transition cursor-pointer">
+                                    Copy
+                                </button>
+                            </div>
+                        @endif
+
+                        @if (session('changes') && count(session('changes')) > 0)
+                            <ul class="mt-1 space-y-1 text-xs text-emerald-200/90 list-disc list-inside">
+                                @foreach (session('changes') as $change)
+                                    <li>{{ $change }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+
+                    <button type="button" onclick="document.getElementById('flash-banner').remove()"
+                        class="text-emerald-300/70 hover:text-emerald-200 text-lg leading-none cursor-pointer"
+                        aria-label="Dismiss">
+                        &times;
+                    </button>
+                </div>
+            </div>
+        @endif
+
         {{ $slot }}
     </main>
 

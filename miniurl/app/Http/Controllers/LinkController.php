@@ -18,7 +18,7 @@ class LinkController extends Controller
 
         $link = $linkService->generateLink($request->validated(), Auth::id());
 
-        return response("A rövidített url-ed: " . url('/') . "/" . $link->short_url);
+        return back()->with('success', 'Link created successfully!')->with('short_url', url('/' . $link->short_url));
     }
 
     public function index(Request $request)
@@ -37,7 +37,7 @@ class LinkController extends Controller
         // equals: $link = Link::where($id, 'id'); if you pass the id as the parameter, but this is better: Link::where('id', $id)->firstOrFail()
         Gate::authorize('delete', $link);
         $link->delete();
-        return redirect('/links');
+        return redirect('/links')->with('success', 'Link deleted successfully!');
     }
 
     public function redirectToOriginal(string $short_url, LinkService $service)
@@ -54,6 +54,6 @@ class LinkController extends Controller
 
         $service->generateShortUrlIfNotExists($link, $request->validated());
 
-        return redirect('/links');
+        return redirect('/links')->with('success', 'Link updated successfully!');
     }
 }
