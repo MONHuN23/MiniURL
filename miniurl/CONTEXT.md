@@ -79,7 +79,7 @@ We are expanding this Laravel 13 project from a simple URL shortener into a **Hu
 - [ ] User Profile Editing + Photo/Avatar Upload (Laravel File Storage + image validation) *(in progress on `feature/user-profile`)*
   - [x] Migration (`add_avatar_to_users_table`) + `avatar` added to `User` `#[Fillable]`
   - [x] Finish `UpdateUserRequest` (`ignore($this->user())`, `email` → `required`)
-  - [ ] `UserService` (skip empty password ✅, refactor `isDirty` ifs → `$user->getDirty()` loop, delete old avatar, store new avatar on `public` disk)
+  - [x] `UserService` (skip empty fields via `foreach` + `unset`, `getDirty()` + `match` change summary, delete old avatar, store new avatar on `public` disk)
   - [ ] Controller (`GET /profile`, `PUT /profile`, clean up unused methods/imports) + `routes/web.php` + `php artisan storage:link` + Blade profile view
   - [ ] *(Optional follow-up)* Account deletion (`UserController::destroy()`) + refactor `PasswordService` to use `getDirty()` loop too
 - [ ] Database Design Session (User-Led): Tags (`N:M`) + Sharing (`N:M` with extra pivot columns)
