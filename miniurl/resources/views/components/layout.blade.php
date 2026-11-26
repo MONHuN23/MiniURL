@@ -46,10 +46,19 @@
                     @endguest
 
                     @auth
-                        <span class="hidden sm:inline-flex items-center gap-2 text-sm text-slate-300 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800">
-                            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                            {{ auth()->user()->name }}
-                        </span>
+                        <a href="/profile"
+                            class="inline-flex items-center gap-2 text-sm px-2.5 py-1.5 rounded-full border transition {{ request()->is('profile') ? 'bg-indigo-500/15 border-indigo-500/40 text-white' : 'bg-slate-900 border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white' }}">
+                            @if (auth()->user()->avatar)
+                                <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                                    alt="{{ auth()->user()->name }}"
+                                    class="h-6 w-6 rounded-full object-cover border border-indigo-400/40" />
+                            @else
+                                <span class="h-6 w-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xs font-bold text-white">
+                                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                </span>
+                            @endif
+                            <span class="hidden sm:inline pr-1">{{ auth()->user()->name }}</span>
+                        </a>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
                             <button type="submit"

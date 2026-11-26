@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 
 class UserService
@@ -36,8 +35,20 @@ class UserService
                 default => "{$label} :{$user->getOriginal($change)} => {$value}"
             };
         }
+        if (empty($changes)) {
+            $changes['no_changes'] = 'No changes were made.';
+        }
 
         $user->save();
         return $changes;
     }
+
+
+    public function deleteUserAndAvatarIfExists(User $user) {
+        
+        if ($user->avatar) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+        $user->delete();
+    }   
 }

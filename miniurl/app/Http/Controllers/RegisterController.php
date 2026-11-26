@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function register(RegisterRequest $registerRequest) {
+    public function register(RegisterRequest $registerRequest)
+    {
 
         $user = User::create($registerRequest->validated());
 
+        Auth::login($user);
+        $registerRequest->session()->regenerate();
+
         return redirect('/');
-        
     }
 }

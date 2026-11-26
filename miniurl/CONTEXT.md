@@ -76,12 +76,12 @@ We are expanding this Laravel 13 project from a simple URL shortener into a **Hu
 - [x] Password Manager CRUD + Encryption + Policy (`Password`, `PasswordPolicy`, `PasswordService`, `PasswordController`, `passwords.blade.php`)
 - [x] Session Flash Messages (`redirect()->with(...)` for link creation, auto-generated password notice, update/delete confirmations)
   - [x] Small follow-up: Add auto-generated password notice to `PasswordController::update()` as well (when password field is left blank on update)
-- [ ] User Profile Editing + Photo/Avatar Upload (Laravel File Storage + image validation) *(in progress on `feature/user-profile`)*
+- [x] User Profile Editing + Photo/Avatar Upload + Account Deletion (Laravel File Storage + image validation) *(completed on `feature/user-profile`)*
   - [x] Migration (`add_avatar_to_users_table`) + `avatar` added to `User` `#[Fillable]`
   - [x] Finish `UpdateUserRequest` (`ignore($this->user())`, `email` → `required`)
-  - [x] `UserService` (skip empty fields via `foreach` + `unset`, `getDirty()` + `match` change summary, delete old avatar, store new avatar on `public` disk)
-  - [ ] Controller (`GET /profile`, `PUT /profile`, clean up unused methods/imports) + `routes/web.php` + `php artisan storage:link` + Blade profile view
-  - [ ] *(Optional follow-up)* Account deletion (`UserController::destroy()`) + refactor `PasswordService` to use `getDirty()` loop too
+  - [x] `UserService` (`updateUser` with `getDirty()` + `match` change summary + avatar swap, `deleteUserAndAvatarIfExists`)
+  - [x] `UserController` (`edit`, `update`, `destroy` with Auth logout & session invalidation) + `routes/web.php` + `php artisan storage:link` + `profile.blade.php` + navbar avatar pill + `RegisterController` auto-login fix
+  - [ ] *(Optional follow-up)* Refactor `PasswordService` to use `getDirty()` loop too
 - [ ] Database Design Session (User-Led): Tags (`N:M`) + Sharing (`N:M` with extra pivot columns)
 - [ ] Tags (`N:M`) implementation
 - [ ] Sharing between users (`N:M` with extra pivot columns) + Policy updates

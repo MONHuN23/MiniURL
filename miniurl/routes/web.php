@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', function () {
@@ -26,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/passwords/{password}', [PasswordController::class, 'update']);
     Route::delete('/passwords/{password}', [PasswordController::class, 'destroy']);
     Route::post('/passwords', [PasswordController::class, 'store']);
+    Route::get('/profile', [UserController::class, 'edit']);
+    Route::put('/profile', [UserController::class, 'update']);
+    Route::delete('/profile', [UserController::class, 'destroy']);
 });
 
 Route::get('/{short_url}', [LinkController::class, 'redirectToOriginal']);
