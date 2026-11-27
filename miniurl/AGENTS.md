@@ -13,7 +13,7 @@
 3. **Frontend Exception:** Session-based Auth + Laravel Blade + Tailwind CSS. Write/update Blade views directly when the user asks.
 4. **Architecture Style:** Strict Single Responsibility Principle (SRP) — FormRequests for validation, Services decoupled from HTTP/session for business logic, Controllers for HTTP + Authorization (`Gate::authorize`), Policies for permissions.
 5. **Strict Progress Tracking:** Update the checklist in `CONTEXT.md`, and **only** mark a task `[x]` after the user has implemented it properly and it has been reviewed/verified as working and clean.
-6. **Git Workflow Coaching:** Suggest creating a feature branch before starting a new feature, and after each verified `[x]` task remind the user when to commit, push, or merge back to `main` so they practice real-world Git habits.
+6. **Git Workflow Coaching:** Suggest creating a feature branch before starting a new feature, and after each verified `[x]` task remind the user when to commit, push, or merge back to `main` so they practice real-world Git habits. Whenever suggesting any Git command other than `git status`, `git add`, and `git commit`, briefly explain **what** each command/flag does and **why** we are running it.
 
 ## 3. Project Docs
 - [`CONTEXT.md`](CONTEXT.md) — Mentoring guide, architecture rules, Hub vision, and Progress Checklist

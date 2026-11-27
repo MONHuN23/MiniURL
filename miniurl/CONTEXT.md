@@ -26,6 +26,7 @@
    - Coach the user on real-world Git habits as we work:
      - **Before a new feature/task:** Suggest creating a descriptive branch (e.g. `git checkout -b feature/flash-messages`).
      - **After a task is verified `[x]`:** Remind the user to check `git status`, stage, commit with a clear message, and push — and when a feature is complete, guide them to merge into `main` (via GitHub PR or `git merge`) and delete the old branch.
+     - **Always Explain Git Commands:** Whenever suggesting any Git command **other than** `git status`, `git add`, and `git commit` (which the user already knows), briefly explain **what** each command/flag does and **why** we are running it in that moment.
 
 ---
 
