@@ -82,8 +82,8 @@ We are expanding this Laravel 13 project from a simple URL shortener into a **Hu
   - [x] Finish `UpdateUserRequest` (`ignore($this->user())`, `email` → `required`)
   - [x] `UserService` (`updateUser` with `getDirty()` + `match` change summary + avatar swap, `deleteUserAndAvatarIfExists`)
   - [x] `UserController` (`edit`, `update`, `destroy` with Auth logout & session invalidation) + `routes/web.php` + `php artisan storage:link` + `profile.blade.php` + navbar avatar pill + `RegisterController` auto-login fix
-  - [ ] *(Optional follow-up)* Refactor `PasswordService` to use `getDirty()` loop too
-- [ ] **Quick Refresher (Before Next Feature):** Review `LoginController` (and `RegisterController` / `UserController::destroy`) — how `session()->regenerate()`, `session()->invalidate()`, and `session()->regenerateToken()` work, and the difference between a **Session ID** vs. a **CSRF token** (and why each matters for security).
+  - [x] *(Optional follow-up)* Refactor `PasswordService` to use `getDirty()` loop too
+- [x] **Quick Refresher (Before Next Feature):** Review `LoginController` (and `RegisterController` / `UserController::destroy`) — how `session()->regenerate()`, `session()->invalidate()`, and `session()->regenerateToken()` work, and the difference between a **Session ID** vs. a **CSRF token** (and why each matters for security).
 - [ ] Database Design Session (User-Led): Tags (`N:M`) + Sharing (`N:M` with extra pivot columns)
 - [ ] Tags (`N:M`) implementation
 - [ ] Sharing between users (`N:M` with extra pivot columns) + Policy updates

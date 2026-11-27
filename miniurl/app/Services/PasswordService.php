@@ -21,14 +21,20 @@ class PasswordService
     public function updatePassword(Password $password, array $data)
     {
         $password->fill($data);
-
         $changes = [];
-        if ($password->isDirty('name')) {
-            $changes['name'] = "Name:{$password->getOriginal('name')} => {$password->name}";
+
+        foreach ($password->getDirty() as $change=> $value) {
+            $label = Str::headline($change);
+            $changes[$change] = match($change) {
+                'password' => 'Password updated',
+                default => "{$label}: {$password->getOriginal($change)} => {$value}"
+            };
         }
-        if ($password->isDirty('account_name')) {
-            $changes['account_name'] = "Account Name: {$password->getOriginal('account_name')} => {$password->account_name}";
+
+        if (empty($changes)) {
+            $changes['no_changes'] = 'No changes were made.';
         }
+        
         $password->save();
         return $changes;
     }
